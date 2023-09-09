@@ -1,66 +1,28 @@
 const button = document.querySelector(".card-btn");
 const card = document.querySelector(".card");
+const currentDay = document.getElementById("currentDay");
+const currentUTCTime = document.getElementById("currentUTCTime");
+
+// click button
 button.addEventListener("click", () => {
   card.classList.toggle("change");
 });
 
-function updateClock() {
-  let now = new Date();
-  let dname = now.getDay(),
-    mo = now.getMonth(),
-    dnum = now.getDate(),
-    yr = now.getFullYear(),
-    hou = now.getHours(),
-    min = now.getMinutes(),
-    sec = now.getSeconds(),
-    pe = "AM";
+// current day of the week
 
-  if (hou == 0) {
-    hou = 12;
-  }
+const today = new Date();
+const dayOfWeek = today.getDay();
+const daysOfWeek = [
+  "Sunday",
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday",
+];
+currentDay.innerText = daysOfWeek[dayOfWeek];
 
-  if (hou > 12) {
-    pe = "PM";
-    hou = hou - 12;
-  }
-
-  let months = [
-    "january",
-    "february",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "september",
-    "october",
-    "November",
-    "December",
-  ];
-  let week = [
-    "Sunday",
-    "Monday",
-    "Tuesday",
-    "wednessday",
-    "thursday",
-    "Friday",
-  ];
-  let ids = [
-    "dayname",
-    "month",
-    "daynum",
-    "year",
-    "hour",
-    "minutes",
-    "seconds",
-    "period",
-  ];
-  let values = [week[dname], months[mo], dnum, yr, hou, min, sec, pe];
-  for (let i = 0; i < ids.length; i++)
-    document.getElementById(ids[i]).innerText = values[i];
-}
-
-setInterval(() => {
-  updateClock();
-}, 1000);
+// get current utc time
+const TImeMilliSeconds = new Date().getTime();
+currentUTCTime.innerText = TImeMilliSeconds;
